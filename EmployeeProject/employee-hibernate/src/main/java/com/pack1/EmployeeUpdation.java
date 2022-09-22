@@ -1,0 +1,31 @@
+package com.pack1;
+
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.EntityTransaction;
+import javax.persistence.Persistence;
+
+public class EmployeeUpdation {
+
+	public static void main(String[] args) {
+		
+		//for update operation //
+		EntityManagerFactory emf=Persistence.createEntityManagerFactory("employeeHibernate");
+		EntityManager em=emf.createEntityManager();
+		EntityTransaction tr=em.getTransaction();
+		tr.begin();
+		Employee emp=em.find(Employee.class, 7);
+
+		if(emp != null) {
+		System.out.println("Employee Deparment Name Before : "+emp.getDeptName());
+		emp.setDeptName("DevOps");
+		em.merge(emp);
+		System.out.println("Employee Deparment Name After : "+emp.getDeptName());
+		}
+		else {
+			System.out.println("there is no employee with id");
+		}
+		tr.commit();
+	}
+
+}

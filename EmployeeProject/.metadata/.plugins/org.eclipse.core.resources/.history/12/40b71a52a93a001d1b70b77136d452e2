@@ -1,0 +1,22 @@
+package com.pack1;
+
+public class EmployeeInsertion {
+
+	public static void main(String[] args) {
+
+		Employee user=new Employee();
+		//user.setId(1);
+		user.setEmpName("Travor");
+		user.setDeptName("Development");
+		user.setDeptNo(30);
+		
+		EntityManagerFactory emf=Persistence.createEntityManagerFactory("myhibernate");
+		EntityManager em=emf.createEntityManager();
+		EntityTransaction tr=em.getTransaction();
+		tr.begin();
+		em.persist(user);
+		tr.commit();
+		
+	}
+
+}

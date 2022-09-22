@@ -1,0 +1,27 @@
+package com.pack1;
+
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.EntityTransaction;
+import javax.persistence.Persistence;
+
+public class EmployeeUpdation {
+
+	public static void main(String[] args) {
+		
+		EntityManagerFactory emf=Persistence.createEntityManagerFactory("employeeHibernate");
+		EntityManager em=emf.createEntityManager();
+		EntityTransaction tr=em.getTransaction();
+		tr.begin();
+		Employee emp=em.find(Employee.class, 3);
+
+
+		System.out.println(emp.getDeptName());
+		emp.setDeptName("Testing");
+		em.merge(emp);
+		System.out.println(emp.getDeptName());
+		tr.commit();
+		
+	}
+
+}

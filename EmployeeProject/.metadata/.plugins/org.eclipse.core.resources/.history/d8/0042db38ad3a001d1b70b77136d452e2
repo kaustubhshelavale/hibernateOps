@@ -1,0 +1,25 @@
+package com.pack1;
+
+public class EmployeeDeletion {
+
+	public static void main(String[] args) {
+		
+		//for delete operation //
+				EntityManagerFactory emf=Persistence.createEntityManagerFactory("employeeHibernate");
+				EntityManager em=emf.createEntityManager();
+				EntityTransaction tr=em.getTransaction();
+				tr.begin();
+				
+				User user1=em.find(User.class, 1);
+				if(user1 !=null){
+				em.remove(user1);
+				System.out.println("person deleted ");
+				}
+				else{
+				System.out.println("there is no person with id );
+				}
+				tr.commit();
+		
+	}
+
+}
